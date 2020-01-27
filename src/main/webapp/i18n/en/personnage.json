@@ -1,0 +1,25 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "personnage": {
+      "home": {
+        "title": "Personnages",
+        "createLabel": "Create a new Personnage",
+        "createOrEditLabel": "Create or edit a Personnage",
+        "notFound": "No Personnages found"
+      },
+      "created": "A new Personnage is created with identifier {{ param }}",
+      "updated": "A Personnage is updated with identifier {{ param }}",
+      "deleted": "A Personnage is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Personnage {{ id }}?"
+      },
+      "detail": {
+        "title": "Personnage"
+      },
+      "nom": "Nom",
+      "race": "Race",
+      "carriere": "Carriere",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

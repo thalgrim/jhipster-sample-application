@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jhipsterSampleApplicationApp.echelon.home.title">Echelons</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-echelon" [routerLink]="['/echelon/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterSampleApplicationApp.echelon.home.createLabel">
+            Create a new Echelon
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="echelons?.length === 0">
+        <span jhiTranslate="jhipsterSampleApplicationApp.echelon.home.notFound">No echelons found</span>
+    </div>
+    <div class="table-responsive" *ngIf="echelons?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.nom">Nom</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.niveau">Niveau</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.cc">Cc</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.ct">Ct</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.fo">Fo</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.en">En</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.ini">Ini</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.ag">Ag</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.dex">Dex</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.inte">Inte</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.fm">Fm</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.soc">Soc</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.statut">Statut</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.echelon.carriere">Carriere</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let echelon of echelons ;trackBy: trackId">
+                <td><a [routerLink]="['/echelon', echelon.id, 'view' ]">{{echelon.id}}</a></td>
+                <td>{{echelon.nom}}</td>
+                <td>{{echelon.niveau}}</td>
+                <td>{{echelon.cc}}</td>
+                <td>{{echelon.ct}}</td>
+                <td>{{echelon.fo}}</td>
+                <td>{{echelon.en}}</td>
+                <td>{{echelon.ini}}</td>
+                <td>{{echelon.ag}}</td>
+                <td>{{echelon.dex}}</td>
+                <td>{{echelon.inte}}</td>
+                <td>{{echelon.fm}}</td>
+                <td>{{echelon.soc}}</td>
+                <td>{{echelon.statut}}</td>
+                <td>
+                    <div *ngIf="echelon.carriere">
+                        <a [routerLink]="['/carriere', echelon.carriere?.id, 'view' ]" >{{echelon.carriere?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/echelon', echelon.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/echelon', echelon.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(echelon)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

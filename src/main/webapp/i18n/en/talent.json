@@ -1,0 +1,26 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "talent": {
+      "home": {
+        "title": "Talents",
+        "createLabel": "Create a new Talent",
+        "createOrEditLabel": "Create or edit a Talent",
+        "notFound": "No Talents found"
+      },
+      "created": "A new Talent is created with identifier {{ param }}",
+      "updated": "A Talent is updated with identifier {{ param }}",
+      "deleted": "A Talent is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Talent {{ id }}?"
+      },
+      "detail": {
+        "title": "Talent"
+      },
+      "nom": "Nom",
+      "maxi": "Maxi",
+      "test": "Test",
+      "description": "Description",
+      "echelon": "Echelon"
+    }
+  }
+}

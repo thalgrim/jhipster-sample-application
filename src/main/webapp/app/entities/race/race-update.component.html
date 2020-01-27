@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-race-heading" jhiTranslate="jhipsterSampleApplicationApp.race.home.createOrEditLabel">Create or edit a Race</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.cc" for="field_cc">Cc</label>
+                    <input type="number" class="form-control" name="cc" id="field_cc"
+                           formControlName="cc"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.ct" for="field_ct">Ct</label>
+                    <input type="number" class="form-control" name="ct" id="field_ct"
+                           formControlName="ct"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.fo" for="field_fo">Fo</label>
+                    <input type="number" class="form-control" name="fo" id="field_fo"
+                           formControlName="fo"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.en" for="field_en">En</label>
+                    <input type="number" class="form-control" name="en" id="field_en"
+                           formControlName="en"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.ini" for="field_ini">Ini</label>
+                    <input type="number" class="form-control" name="ini" id="field_ini"
+                           formControlName="ini"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.ag" for="field_ag">Ag</label>
+                    <input type="number" class="form-control" name="ag" id="field_ag"
+                           formControlName="ag"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.dex" for="field_dex">Dex</label>
+                    <input type="number" class="form-control" name="dex" id="field_dex"
+                           formControlName="dex"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.inte" for="field_inte">Inte</label>
+                    <input type="number" class="form-control" name="inte" id="field_inte"
+                           formControlName="inte"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.fm" for="field_fm">Fm</label>
+                    <input type="number" class="form-control" name="fm" id="field_fm"
+                           formControlName="fm"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.soc" for="field_soc">Soc</label>
+                    <input type="number" class="form-control" name="soc" id="field_soc"
+                           formControlName="soc"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.destin" for="field_destin">Destin</label>
+                    <input type="number" class="form-control" name="destin" id="field_destin"
+                           formControlName="destin"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.resilience" for="field_resilience">Resilience</label>
+                    <input type="number" class="form-control" name="resilience" id="field_resilience"
+                           formControlName="resilience"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.experience" for="field_experience">Experience</label>
+                    <input type="number" class="form-control" name="experience" id="field_experience"
+                           formControlName="experience"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.mouvement" for="field_mouvement">Mouvement</label>
+                    <input type="number" class="form-control" name="mouvement" id="field_mouvement"
+                           formControlName="mouvement"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.pointsSuplementaires" for="field_pointsSuplementaires">Points Suplementaires</label>
+                    <input type="number" class="form-control" name="pointsSuplementaires" id="field_pointsSuplementaires"
+                           formControlName="pointsSuplementaires"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.blessures" for="field_blessures">Blessures</label>
+                    <input type="number" class="form-control" name="blessures" id="field_blessures"
+                           formControlName="blessures"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.race.personnage" for="field_personnage">Personnage</label>
+                    <select class="form-control" id="field_personnage" name="personnage" formControlName="personnage">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personnageOption.id === editForm.get('personnage')!.value?.id ? editForm.get('personnage')!.value : personnageOption" *ngFor="let personnageOption of personnages; trackBy: trackById">{{personnageOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

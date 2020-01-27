@@ -1,0 +1,34 @@
+{
+    "name": "Classe",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "possession",
+            "otherEntityRelationshipName": "classe",
+            "relationshipName": "possession"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "carriere",
+            "otherEntityRelationshipName": "classe",
+            "relationshipName": "carriere",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200127145501",
+    "entityTableName": "classe",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

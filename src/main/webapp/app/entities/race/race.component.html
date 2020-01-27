@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jhipsterSampleApplicationApp.race.home.title">Races</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-race" [routerLink]="['/race/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterSampleApplicationApp.race.home.createLabel">
+            Create a new Race
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="races?.length === 0">
+        <span jhiTranslate="jhipsterSampleApplicationApp.race.home.notFound">No races found</span>
+    </div>
+    <div class="table-responsive" *ngIf="races?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.cc">Cc</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.ct">Ct</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.fo">Fo</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.en">En</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.ini">Ini</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.ag">Ag</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.dex">Dex</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.inte">Inte</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.fm">Fm</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.soc">Soc</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.destin">Destin</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.resilience">Resilience</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.experience">Experience</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.mouvement">Mouvement</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.pointsSuplementaires">Points Suplementaires</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.blessures">Blessures</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.nom">Nom</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.race.personnage">Personnage</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let race of races ;trackBy: trackId">
+                <td><a [routerLink]="['/race', race.id, 'view' ]">{{race.id}}</a></td>
+                <td>{{race.cc}}</td>
+                <td>{{race.ct}}</td>
+                <td>{{race.fo}}</td>
+                <td>{{race.en}}</td>
+                <td>{{race.ini}}</td>
+                <td>{{race.ag}}</td>
+                <td>{{race.dex}}</td>
+                <td>{{race.inte}}</td>
+                <td>{{race.fm}}</td>
+                <td>{{race.soc}}</td>
+                <td>{{race.destin}}</td>
+                <td>{{race.resilience}}</td>
+                <td>{{race.experience}}</td>
+                <td>{{race.mouvement}}</td>
+                <td>{{race.pointsSuplementaires}}</td>
+                <td>{{race.blessures}}</td>
+                <td>{{race.nom}}</td>
+                <td>
+                    <div *ngIf="race.personnage">
+                        <a [routerLink]="['/personnage', race.personnage?.id, 'view' ]" >{{race.personnage?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/race', race.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/race', race.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(race)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
