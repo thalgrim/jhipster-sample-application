@@ -42,6 +42,24 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.User.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
             createCache(cm, com.mycompany.myapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.mycompany.myapp.domain.Possession.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Talent.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Competence.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Echelon.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Echelon.class.getName() + ".competences");
+            createCache(cm, com.mycompany.myapp.domain.Echelon.class.getName() + ".talents");
+            createCache(cm, com.mycompany.myapp.domain.Echelon.class.getName() + ".possessions");
+            createCache(cm, com.mycompany.myapp.domain.Carriere.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Carriere.class.getName() + ".echelons");
+            createCache(cm, com.mycompany.myapp.domain.Carriere.class.getName() + ".classes");
+            createCache(cm, com.mycompany.myapp.domain.Classe.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Classe.class.getName() + ".possessions");
+            createCache(cm, com.mycompany.myapp.domain.Race.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Personnage.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Personnage.class.getName() + ".races");
+            createCache(cm, com.mycompany.myapp.domain.Personnage.class.getName() + ".carrieres");
+            createCache(cm, com.mycompany.myapp.domain.Utilisateur.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Utilisateur.class.getName() + ".personnages");
             // jhipster-needle-ehcache-add-entry
         };
     }

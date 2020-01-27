@@ -1,0 +1,38 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "echelon": {
+      "home": {
+        "title": "Echelons",
+        "createLabel": "Create a new Echelon",
+        "createOrEditLabel": "Create or edit a Echelon",
+        "notFound": "No Echelons found"
+      },
+      "created": "A new Echelon is created with identifier {{ param }}",
+      "updated": "A Echelon is updated with identifier {{ param }}",
+      "deleted": "A Echelon is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Echelon {{ id }}?"
+      },
+      "detail": {
+        "title": "Echelon"
+      },
+      "nom": "Nom",
+      "niveau": "Niveau",
+      "cc": "Cc",
+      "ct": "Ct",
+      "fo": "Fo",
+      "en": "En",
+      "ini": "Ini",
+      "ag": "Ag",
+      "dex": "Dex",
+      "inte": "Inte",
+      "fm": "Fm",
+      "soc": "Soc",
+      "statut": "Statut",
+      "competence": "Competence",
+      "talent": "Talent",
+      "possession": "Possession",
+      "carriere": "Carriere"
+    }
+  }
+}

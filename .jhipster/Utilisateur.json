@@ -1,0 +1,27 @@
+{
+    "name": "Utilisateur",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "personnage",
+            "otherEntityRelationshipName": "utilisateur",
+            "relationshipName": "personnage"
+        }
+    ],
+    "changelogDate": "20200127145504",
+    "entityTableName": "utilisateur",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

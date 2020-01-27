@@ -1,0 +1,40 @@
+{
+    "name": "Personnage",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "race",
+            "otherEntityRelationshipName": "personnage",
+            "relationshipName": "race"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "carriere",
+            "otherEntityRelationshipName": "personnage",
+            "relationshipName": "carriere"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "utilisateur",
+            "otherEntityRelationshipName": "personnage",
+            "relationshipName": "utilisateur",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200127145503",
+    "entityTableName": "personnage",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

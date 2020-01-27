@@ -1,0 +1,40 @@
+{
+    "name": "Carriere",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "echelon",
+            "otherEntityRelationshipName": "carriere",
+            "relationshipName": "echelon"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "classe",
+            "otherEntityRelationshipName": "carriere",
+            "relationshipName": "classe"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "personnage",
+            "otherEntityRelationshipName": "carriere",
+            "relationshipName": "personnage",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200127145500",
+    "entityTableName": "carriere",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

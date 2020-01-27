@@ -1,0 +1,61 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jhipsterSampleApplicationApp.carriere.home.title">Carrieres</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-carriere" [routerLink]="['/carriere/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterSampleApplicationApp.carriere.home.createLabel">
+            Create a new Carriere
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="carrieres?.length === 0">
+        <span jhiTranslate="jhipsterSampleApplicationApp.carriere.home.notFound">No carrieres found</span>
+    </div>
+    <div class="table-responsive" *ngIf="carrieres?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.carriere.nom">Nom</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.carriere.personnage">Personnage</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let carriere of carrieres ;trackBy: trackId">
+                <td><a [routerLink]="['/carriere', carriere.id, 'view' ]">{{carriere.id}}</a></td>
+                <td>{{carriere.nom}}</td>
+                <td>
+                    <div *ngIf="carriere.personnage">
+                        <a [routerLink]="['/personnage', carriere.personnage?.id, 'view' ]" >{{carriere.personnage?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/carriere', carriere.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/carriere', carriere.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(carriere)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
