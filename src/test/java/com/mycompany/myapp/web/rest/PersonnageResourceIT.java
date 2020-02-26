@@ -105,7 +105,7 @@ public class PersonnageResourceIT {
 
         // Create the Personnage
         restPersonnageMockMvc.perform(post("/api/personnages")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(personnage)))
             .andExpect(status().isCreated());
 
@@ -126,7 +126,7 @@ public class PersonnageResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPersonnageMockMvc.perform(post("/api/personnages")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(personnage)))
             .andExpect(status().isBadRequest());
 
@@ -145,7 +145,7 @@ public class PersonnageResourceIT {
         // Get all the personnageList
         restPersonnageMockMvc.perform(get("/api/personnages?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(personnage.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)));
     }
@@ -159,7 +159,7 @@ public class PersonnageResourceIT {
         // Get the personnage
         restPersonnageMockMvc.perform(get("/api/personnages/{id}", personnage.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(personnage.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM));
     }
@@ -188,7 +188,7 @@ public class PersonnageResourceIT {
             .nom(UPDATED_NOM);
 
         restPersonnageMockMvc.perform(put("/api/personnages")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedPersonnage)))
             .andExpect(status().isOk());
 
@@ -208,7 +208,7 @@ public class PersonnageResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restPersonnageMockMvc.perform(put("/api/personnages")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(personnage)))
             .andExpect(status().isBadRequest());
 
@@ -227,7 +227,7 @@ public class PersonnageResourceIT {
 
         // Delete the personnage
         restPersonnageMockMvc.perform(delete("/api/personnages/{id}", personnage.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

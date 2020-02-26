@@ -2,28 +2,33 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-talent-heading" jhiTranslate="jhipsterSampleApplicationApp.talent.home.createOrEditLabel">Create or edit a Talent</h2>
+
             <div>
                 <jhi-alert-error></jhi-alert-error>
+
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.talent.nom" for="field_nom">Nom</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
                            formControlName="nom"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.talent.maxi" for="field_maxi">Maxi</label>
                     <input type="number" class="form-control" name="maxi" id="field_maxi"
                            formControlName="maxi"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.talent.test" for="field_test">Test</label>
                     <input type="text" class="form-control" name="test" id="field_test"
                            formControlName="test"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.talent.description" for="field_description">Description</label>
                     <input type="text" class="form-control" name="description" id="field_description"
@@ -34,16 +39,18 @@
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.talent.echelon" for="field_echelon">Echelon</label>
                     <select class="form-control" id="field_echelon" name="echelon" formControlName="echelon">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="echelonOption.id === editForm.get('echelon')!.value?.id ? editForm.get('echelon')!.value : echelonOption" *ngFor="let echelonOption of echelons; trackBy: trackById">{{echelonOption.id}}</option>
+                        <option [ngValue]="echelonOption.id === editForm.get('echelon')!.value?.id ? editForm.get('echelon')!.value : echelonOption" *ngFor="let echelonOption of echelons; trackBy: trackById">{{ echelonOption.id }}</option>
                     </select>
                 </div>
             </div>
+
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
+
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

@@ -1,18 +1,27 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="carriere">
-            <h2><span jhiTranslate="jhipsterSampleApplicationApp.carriere.detail.title">Carriere</span> {{carriere.id}}</h2>
+            <h2><span jhiTranslate="jhipsterSampleApplicationApp.carriere.detail.title">Carriere</span> {{ carriere.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.carriere.nom">Nom</span></dt>
                 <dd>
-                    <span>{{carriere.nom}}</span>
+                    <span>{{ carriere.nom }}</span>
                 </dd>
-                <dt><span jhiTranslate="jhipsterSampleApplicationApp.carriere.personnage">Personnage</span></dt>
+                <dt><span jhiTranslate="jhipsterSampleApplicationApp.carriere.echelon">Echelon</span></dt>
                 <dd>
-                    <div *ngIf="carriere.personnage">
-                        <a [routerLink]="['/personnage', carriere.personnage?.id, 'view']">{{carriere.personnage?.id}}</a>
+                    <div *ngIf="carriere.echelon">
+                        <a [routerLink]="['/echelon', carriere.echelon?.id, 'view']">{{ carriere.echelon?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhipsterSampleApplicationApp.carriere.classe">Classe</span></dt>
+                <dd>
+                    <div *ngIf="carriere.classe">
+                        <a [routerLink]="['/classe', carriere.classe?.id, 'view']">{{ carriere.classe?.id }}</a>
                     </div>
                 </dd>
             </dl>
@@ -20,13 +29,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/carriere', carriere.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>

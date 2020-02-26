@@ -13,9 +13,7 @@ export class PersonnageDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ personnage }) => {
-      this.personnage = personnage;
-    });
+    this.activatedRoute.data.subscribe(({ personnage }) => (this.personnage = personnage));
   }
 
   previousState(): void {

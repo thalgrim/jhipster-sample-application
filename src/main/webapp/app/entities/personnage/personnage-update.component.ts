@@ -8,8 +8,14 @@ import { map } from 'rxjs/operators';
 
 import { IPersonnage, Personnage } from 'app/shared/model/personnage.model';
 import { PersonnageService } from './personnage.service';
+import { IRace } from 'app/shared/model/race.model';
+import { RaceService } from 'app/entities/race/race.service';
+import { ICarriere } from 'app/shared/model/carriere.model';
+import { CarriereService } from 'app/entities/carriere/carriere.service';
 import { IUtilisateur } from 'app/shared/model/utilisateur.model';
 import { UtilisateurService } from 'app/entities/utilisateur/utilisateur.service';
+
+type SelectableEntity = IRace | ICarriere | IUtilisateur;
 
 @Component({
   selector: 'jhi-personnage-update',
@@ -17,17 +23,22 @@ import { UtilisateurService } from 'app/entities/utilisateur/utilisateur.service
 })
 export class PersonnageUpdateComponent implements OnInit {
   isSaving = false;
-
+  races: IRace[] = [];
+  carrieres: ICarriere[] = [];
   utilisateurs: IUtilisateur[] = [];
 
   editForm = this.fb.group({
     id: [],
     nom: [],
+    race: [],
+    carriere: [],
     utilisateur: []
   });
 
   constructor(
     protected personnageService: PersonnageService,
+    protected raceService: RaceService,
+    protected carriereService: CarriereService,
     protected utilisateurService: UtilisateurService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -37,14 +48,51 @@ export class PersonnageUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ personnage }) => {
       this.updateForm(personnage);
 
-      this.utilisateurService
-        .query()
+      this.raceService
+        .query({ filter: 'personnage-is-null' })
         .pipe(
-          map((res: HttpResponse<IUtilisateur[]>) => {
-            return res.body ? res.body : [];
+          map((res: HttpResponse<IRace[]>) => {
+            return res.body || [];
           })
         )
-        .subscribe((resBody: IUtilisateur[]) => (this.utilisateurs = resBody));
+        .subscribe((resBody: IRace[]) => {
+          if (!personnage.race || !personnage.race.id) {
+            this.races = resBody;
+          } else {
+            this.raceService
+              .find(personnage.race.id)
+              .pipe(
+                map((subRes: HttpResponse<IRace>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IRace[]) => (this.races = concatRes));
+          }
+        });
+
+      this.carriereService
+        .query({ filter: 'personnage-is-null' })
+        .pipe(
+          map((res: HttpResponse<ICarriere[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: ICarriere[]) => {
+          if (!personnage.carriere || !personnage.carriere.id) {
+            this.carrieres = resBody;
+          } else {
+            this.carriereService
+              .find(personnage.carriere.id)
+              .pipe(
+                map((subRes: HttpResponse<ICarriere>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: ICarriere[]) => (this.carrieres = concatRes));
+          }
+        });
+
+      this.utilisateurService.query().subscribe((res: HttpResponse<IUtilisateur[]>) => (this.utilisateurs = res.body || []));
     });
   }
 
@@ -52,6 +100,8 @@ export class PersonnageUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: personnage.id,
       nom: personnage.nom,
+      race: personnage.race,
+      carriere: personnage.carriere,
       utilisateur: personnage.utilisateur
     });
   }
@@ -75,6 +125,8 @@ export class PersonnageUpdateComponent implements OnInit {
       ...new Personnage(),
       id: this.editForm.get(['id'])!.value,
       nom: this.editForm.get(['nom'])!.value,
+      race: this.editForm.get(['race'])!.value,
+      carriere: this.editForm.get(['carriere'])!.value,
       utilisateur: this.editForm.get(['utilisateur'])!.value
     };
   }
@@ -95,7 +147,7 @@ export class PersonnageUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IUtilisateur): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

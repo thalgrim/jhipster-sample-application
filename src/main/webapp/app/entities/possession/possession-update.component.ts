@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { IPossession, Possession } from 'app/shared/model/possession.model';
 import { PossessionService } from './possession.service';
@@ -21,9 +20,7 @@ type SelectableEntity = IEchelon | IClasse;
 })
 export class PossessionUpdateComponent implements OnInit {
   isSaving = false;
-
   echelons: IEchelon[] = [];
-
   classes: IClasse[] = [];
 
   editForm = this.fb.group({
@@ -45,23 +42,9 @@ export class PossessionUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ possession }) => {
       this.updateForm(possession);
 
-      this.echelonService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IEchelon[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IEchelon[]) => (this.echelons = resBody));
+      this.echelonService.query().subscribe((res: HttpResponse<IEchelon[]>) => (this.echelons = res.body || []));
 
-      this.classeService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IClasse[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IClasse[]) => (this.classes = resBody));
+      this.classeService.query().subscribe((res: HttpResponse<IClasse[]>) => (this.classes = res.body || []));
     });
   }
 

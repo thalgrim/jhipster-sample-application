@@ -4,12 +4,9 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { IRace, Race } from 'app/shared/model/race.model';
 import { RaceService } from './race.service';
-import { IPersonnage } from 'app/shared/model/personnage.model';
-import { PersonnageService } from 'app/entities/personnage/personnage.service';
 
 @Component({
   selector: 'jhi-race-update',
@@ -17,8 +14,6 @@ import { PersonnageService } from 'app/entities/personnage/personnage.service';
 })
 export class RaceUpdateComponent implements OnInit {
   isSaving = false;
-
-  personnages: IPersonnage[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -38,29 +33,14 @@ export class RaceUpdateComponent implements OnInit {
     mouvement: [],
     pointsSuplementaires: [],
     blessures: [],
-    nom: [],
-    personnage: []
+    nom: []
   });
 
-  constructor(
-    protected raceService: RaceService,
-    protected personnageService: PersonnageService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected raceService: RaceService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ race }) => {
       this.updateForm(race);
-
-      this.personnageService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IPersonnage[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IPersonnage[]) => (this.personnages = resBody));
     });
   }
 
@@ -83,8 +63,7 @@ export class RaceUpdateComponent implements OnInit {
       mouvement: race.mouvement,
       pointsSuplementaires: race.pointsSuplementaires,
       blessures: race.blessures,
-      nom: race.nom,
-      personnage: race.personnage
+      nom: race.nom
     });
   }
 
@@ -122,8 +101,7 @@ export class RaceUpdateComponent implements OnInit {
       mouvement: this.editForm.get(['mouvement'])!.value,
       pointsSuplementaires: this.editForm.get(['pointsSuplementaires'])!.value,
       blessures: this.editForm.get(['blessures'])!.value,
-      nom: this.editForm.get(['nom'])!.value,
-      personnage: this.editForm.get(['personnage'])!.value
+      nom: this.editForm.get(['nom'])!.value
     };
   }
 
@@ -141,9 +119,5 @@ export class RaceUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IPersonnage): any {
-    return item.id;
   }
 }

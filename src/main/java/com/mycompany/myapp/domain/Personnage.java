@@ -1,4 +1,5 @@
 package com.mycompany.myapp.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -6,8 +7,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Personnage.
@@ -26,13 +25,13 @@ public class Personnage implements Serializable {
     @Column(name = "nom")
     private String nom;
 
-    @OneToMany(mappedBy = "personnage")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Race> races = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Race race;
 
-    @OneToMany(mappedBy = "personnage")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Carriere> carrieres = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Carriere carriere;
 
     @ManyToOne
     @JsonIgnoreProperties("personnages")
@@ -60,54 +59,30 @@ public class Personnage implements Serializable {
         this.nom = nom;
     }
 
-    public Set<Race> getRaces() {
-        return races;
+    public Race getRace() {
+        return race;
     }
 
-    public Personnage races(Set<Race> races) {
-        this.races = races;
+    public Personnage race(Race race) {
+        this.race = race;
         return this;
     }
 
-    public Personnage addRace(Race race) {
-        this.races.add(race);
-        race.setPersonnage(this);
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public Carriere getCarriere() {
+        return carriere;
+    }
+
+    public Personnage carriere(Carriere carriere) {
+        this.carriere = carriere;
         return this;
     }
 
-    public Personnage removeRace(Race race) {
-        this.races.remove(race);
-        race.setPersonnage(null);
-        return this;
-    }
-
-    public void setRaces(Set<Race> races) {
-        this.races = races;
-    }
-
-    public Set<Carriere> getCarrieres() {
-        return carrieres;
-    }
-
-    public Personnage carrieres(Set<Carriere> carrieres) {
-        this.carrieres = carrieres;
-        return this;
-    }
-
-    public Personnage addCarriere(Carriere carriere) {
-        this.carrieres.add(carriere);
-        carriere.setPersonnage(this);
-        return this;
-    }
-
-    public Personnage removeCarriere(Carriere carriere) {
-        this.carrieres.remove(carriere);
-        carriere.setPersonnage(null);
-        return this;
-    }
-
-    public void setCarrieres(Set<Carriere> carrieres) {
-        this.carrieres = carrieres;
+    public void setCarriere(Carriere carriere) {
+        this.carriere = carriere;
     }
 
     public Utilisateur getUtilisateur() {

@@ -19,9 +19,7 @@ export class CarriereComponent implements OnInit, OnDestroy {
   constructor(protected carriereService: CarriereService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.carriereService.query().subscribe((res: HttpResponse<ICarriere[]>) => {
-      this.carrieres = res.body ? res.body : [];
-    });
+    this.carriereService.query().subscribe((res: HttpResponse<ICarriere[]>) => (this.carrieres = res.body || []));
   }
 
   ngOnInit(): void {

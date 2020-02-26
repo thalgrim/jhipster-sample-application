@@ -13,7 +13,7 @@ export class CarriereDeleteDialogComponent {
 
   constructor(protected carriereService: CarriereService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

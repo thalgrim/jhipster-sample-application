@@ -1,80 +1,77 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="echelon">
-            <h2><span jhiTranslate="jhipsterSampleApplicationApp.echelon.detail.title">Echelon</span> {{echelon.id}}</h2>
+            <h2><span jhiTranslate="jhipsterSampleApplicationApp.echelon.detail.title">Echelon</span> {{ echelon.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.nom">Nom</span></dt>
                 <dd>
-                    <span>{{echelon.nom}}</span>
+                    <span>{{ echelon.nom }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.niveau">Niveau</span></dt>
                 <dd>
-                    <span>{{echelon.niveau}}</span>
+                    <span>{{ echelon.niveau }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.cc">Cc</span></dt>
                 <dd>
-                    <span>{{echelon.cc}}</span>
+                    <span>{{ echelon.cc }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.ct">Ct</span></dt>
                 <dd>
-                    <span>{{echelon.ct}}</span>
+                    <span>{{ echelon.ct }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.fo">Fo</span></dt>
                 <dd>
-                    <span>{{echelon.fo}}</span>
+                    <span>{{ echelon.fo }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.en">En</span></dt>
                 <dd>
-                    <span>{{echelon.en}}</span>
+                    <span>{{ echelon.en }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.ini">Ini</span></dt>
                 <dd>
-                    <span>{{echelon.ini}}</span>
+                    <span>{{ echelon.ini }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.ag">Ag</span></dt>
                 <dd>
-                    <span>{{echelon.ag}}</span>
+                    <span>{{ echelon.ag }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.dex">Dex</span></dt>
                 <dd>
-                    <span>{{echelon.dex}}</span>
+                    <span>{{ echelon.dex }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.inte">Inte</span></dt>
                 <dd>
-                    <span>{{echelon.inte}}</span>
+                    <span>{{ echelon.inte }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.fm">Fm</span></dt>
                 <dd>
-                    <span>{{echelon.fm}}</span>
+                    <span>{{ echelon.fm }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.soc">Soc</span></dt>
                 <dd>
-                    <span>{{echelon.soc}}</span>
+                    <span>{{ echelon.soc }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.statut">Statut</span></dt>
                 <dd>
-                    <span>{{echelon.statut}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterSampleApplicationApp.echelon.carriere">Carriere</span></dt>
-                <dd>
-                    <div *ngIf="echelon.carriere">
-                        <a [routerLink]="['/carriere', echelon.carriere?.id, 'view']">{{echelon.carriere?.id}}</a>
-                    </div>
+                    <span>{{ echelon.statut }}</span>
                 </dd>
             </dl>
 
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/echelon', echelon.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>

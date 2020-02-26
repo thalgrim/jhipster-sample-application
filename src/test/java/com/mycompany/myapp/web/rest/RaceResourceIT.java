@@ -185,7 +185,7 @@ public class RaceResourceIT {
 
         // Create the Race
         restRaceMockMvc.perform(post("/api/races")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(race)))
             .andExpect(status().isCreated());
 
@@ -222,7 +222,7 @@ public class RaceResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restRaceMockMvc.perform(post("/api/races")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(race)))
             .andExpect(status().isBadRequest());
 
@@ -241,7 +241,7 @@ public class RaceResourceIT {
         // Get all the raceList
         restRaceMockMvc.perform(get("/api/races?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(race.getId().intValue())))
             .andExpect(jsonPath("$.[*].cc").value(hasItem(DEFAULT_CC)))
             .andExpect(jsonPath("$.[*].ct").value(hasItem(DEFAULT_CT)))
@@ -271,7 +271,7 @@ public class RaceResourceIT {
         // Get the race
         restRaceMockMvc.perform(get("/api/races/{id}", race.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(race.getId().intValue()))
             .andExpect(jsonPath("$.cc").value(DEFAULT_CC))
             .andExpect(jsonPath("$.ct").value(DEFAULT_CT))
@@ -332,7 +332,7 @@ public class RaceResourceIT {
             .nom(UPDATED_NOM);
 
         restRaceMockMvc.perform(put("/api/races")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedRace)))
             .andExpect(status().isOk());
 
@@ -368,7 +368,7 @@ public class RaceResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRaceMockMvc.perform(put("/api/races")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(race)))
             .andExpect(status().isBadRequest());
 
@@ -387,7 +387,7 @@ public class RaceResourceIT {
 
         // Delete the race
         restRaceMockMvc.perform(delete("/api/races/{id}", race.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

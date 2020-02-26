@@ -19,6 +19,12 @@
             <column name="nom" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="race_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_personnage_race_id" />
+            </column>
+            <column name="carriere_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_personnage_carriere_id" />
+            </column>
             <column name="utilisateur_id" type="bigint">
                 <constraints nullable="true" />
             </column>

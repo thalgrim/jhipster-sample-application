@@ -8,8 +8,12 @@ import { map } from 'rxjs/operators';
 
 import { ICarriere, Carriere } from 'app/shared/model/carriere.model';
 import { CarriereService } from './carriere.service';
-import { IPersonnage } from 'app/shared/model/personnage.model';
-import { PersonnageService } from 'app/entities/personnage/personnage.service';
+import { IEchelon } from 'app/shared/model/echelon.model';
+import { EchelonService } from 'app/entities/echelon/echelon.service';
+import { IClasse } from 'app/shared/model/classe.model';
+import { ClasseService } from 'app/entities/classe/classe.service';
+
+type SelectableEntity = IEchelon | IClasse;
 
 @Component({
   selector: 'jhi-carriere-update',
@@ -17,18 +21,20 @@ import { PersonnageService } from 'app/entities/personnage/personnage.service';
 })
 export class CarriereUpdateComponent implements OnInit {
   isSaving = false;
-
-  personnages: IPersonnage[] = [];
+  echelons: IEchelon[] = [];
+  classes: IClasse[] = [];
 
   editForm = this.fb.group({
     id: [],
     nom: [],
-    personnage: []
+    echelon: [],
+    classe: []
   });
 
   constructor(
     protected carriereService: CarriereService,
-    protected personnageService: PersonnageService,
+    protected echelonService: EchelonService,
+    protected classeService: ClasseService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -37,14 +43,49 @@ export class CarriereUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ carriere }) => {
       this.updateForm(carriere);
 
-      this.personnageService
-        .query()
+      this.echelonService
+        .query({ filter: 'carriere-is-null' })
         .pipe(
-          map((res: HttpResponse<IPersonnage[]>) => {
-            return res.body ? res.body : [];
+          map((res: HttpResponse<IEchelon[]>) => {
+            return res.body || [];
           })
         )
-        .subscribe((resBody: IPersonnage[]) => (this.personnages = resBody));
+        .subscribe((resBody: IEchelon[]) => {
+          if (!carriere.echelon || !carriere.echelon.id) {
+            this.echelons = resBody;
+          } else {
+            this.echelonService
+              .find(carriere.echelon.id)
+              .pipe(
+                map((subRes: HttpResponse<IEchelon>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IEchelon[]) => (this.echelons = concatRes));
+          }
+        });
+
+      this.classeService
+        .query({ filter: 'carriere-is-null' })
+        .pipe(
+          map((res: HttpResponse<IClasse[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IClasse[]) => {
+          if (!carriere.classe || !carriere.classe.id) {
+            this.classes = resBody;
+          } else {
+            this.classeService
+              .find(carriere.classe.id)
+              .pipe(
+                map((subRes: HttpResponse<IClasse>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IClasse[]) => (this.classes = concatRes));
+          }
+        });
     });
   }
 
@@ -52,7 +93,8 @@ export class CarriereUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: carriere.id,
       nom: carriere.nom,
-      personnage: carriere.personnage
+      echelon: carriere.echelon,
+      classe: carriere.classe
     });
   }
 
@@ -75,7 +117,8 @@ export class CarriereUpdateComponent implements OnInit {
       ...new Carriere(),
       id: this.editForm.get(['id'])!.value,
       nom: this.editForm.get(['nom'])!.value,
-      personnage: this.editForm.get(['personnage'])!.value
+      echelon: this.editForm.get(['echelon'])!.value,
+      classe: this.editForm.get(['classe'])!.value
     };
   }
 
@@ -95,7 +138,7 @@ export class CarriereUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IPersonnage): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

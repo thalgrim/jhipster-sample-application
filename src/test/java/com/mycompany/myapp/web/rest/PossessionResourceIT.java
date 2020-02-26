@@ -105,7 +105,7 @@ public class PossessionResourceIT {
 
         // Create the Possession
         restPossessionMockMvc.perform(post("/api/possessions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(possession)))
             .andExpect(status().isCreated());
 
@@ -126,7 +126,7 @@ public class PossessionResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPossessionMockMvc.perform(post("/api/possessions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(possession)))
             .andExpect(status().isBadRequest());
 
@@ -145,7 +145,7 @@ public class PossessionResourceIT {
         // Get all the possessionList
         restPossessionMockMvc.perform(get("/api/possessions?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(possession.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)));
     }
@@ -159,7 +159,7 @@ public class PossessionResourceIT {
         // Get the possession
         restPossessionMockMvc.perform(get("/api/possessions/{id}", possession.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(possession.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM));
     }
@@ -188,7 +188,7 @@ public class PossessionResourceIT {
             .nom(UPDATED_NOM);
 
         restPossessionMockMvc.perform(put("/api/possessions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedPossession)))
             .andExpect(status().isOk());
 
@@ -208,7 +208,7 @@ public class PossessionResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restPossessionMockMvc.perform(put("/api/possessions")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(possession)))
             .andExpect(status().isBadRequest());
 
@@ -227,7 +227,7 @@ public class PossessionResourceIT {
 
         // Delete the possession
         restPossessionMockMvc.perform(delete("/api/possessions/{id}", possession.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

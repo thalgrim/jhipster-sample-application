@@ -19,9 +19,7 @@ export class EchelonComponent implements OnInit, OnDestroy {
   constructor(protected echelonService: EchelonService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.echelonService.query().subscribe((res: HttpResponse<IEchelon[]>) => {
-      this.echelons = res.body ? res.body : [];
-    });
+    this.echelonService.query().subscribe((res: HttpResponse<IEchelon[]>) => (this.echelons = res.body || []));
   }
 
   ngOnInit(): void {

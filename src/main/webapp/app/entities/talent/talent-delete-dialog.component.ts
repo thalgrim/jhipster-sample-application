@@ -13,7 +13,7 @@ export class TalentDeleteDialogComponent {
 
   constructor(protected talentService: TalentService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

@@ -23,9 +23,7 @@ export class UtilisateurComponent implements OnInit, OnDestroy {
   ) {}
 
   loadAll(): void {
-    this.utilisateurService.query().subscribe((res: HttpResponse<IUtilisateur[]>) => {
-      this.utilisateurs = res.body ? res.body : [];
-    });
+    this.utilisateurService.query().subscribe((res: HttpResponse<IUtilisateur[]>) => (this.utilisateurs = res.body || []));
   }
 
   ngOnInit(): void {

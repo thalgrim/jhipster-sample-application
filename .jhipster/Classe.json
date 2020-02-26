@@ -14,11 +14,11 @@
             "relationshipName": "possession"
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "one-to-one",
             "otherEntityName": "carriere",
             "otherEntityRelationshipName": "classe",
             "relationshipName": "carriere",
-            "otherEntityField": "id"
+            "ownerSide": false
         }
     ],
     "changelogDate": "20200127145501",

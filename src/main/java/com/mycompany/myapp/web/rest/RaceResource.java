@@ -10,14 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.Race}.
@@ -83,11 +84,18 @@ public class RaceResource {
     /**
      * {@code GET  /races} : get all the races.
      *
-
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of races in body.
      */
     @GetMapping("/races")
-    public List<Race> getAllRaces() {
+    public List<Race> getAllRaces(@RequestParam(required = false) String filter) {
+        if ("personnage-is-null".equals(filter)) {
+            log.debug("REST request to get all Races where personnage is null");
+            return StreamSupport
+                .stream(raceRepository.findAll().spliterator(), false)
+                .filter(race -> race.getPersonnage() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all Races");
         return raceRepository.findAll();
     }

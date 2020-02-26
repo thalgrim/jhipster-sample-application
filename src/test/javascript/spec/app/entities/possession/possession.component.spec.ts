@@ -16,8 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [JhipsterSampleApplicationTestModule],
-        declarations: [PossessionComponent],
-        providers: []
+        declarations: [PossessionComponent]
       })
         .overrideTemplate(PossessionComponent, '')
         .compileComponents();

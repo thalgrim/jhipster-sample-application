@@ -13,9 +13,7 @@ export class UtilisateurDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ utilisateur }) => {
-      this.utilisateur = utilisateur;
-    });
+    this.activatedRoute.data.subscribe(({ utilisateur }) => (this.utilisateur = utilisateur));
   }
 
   previousState(): void {

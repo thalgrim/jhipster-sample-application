@@ -13,7 +13,7 @@ export class RaceDeleteDialogComponent {
 
   constructor(protected raceService: RaceService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

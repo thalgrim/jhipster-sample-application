@@ -10,14 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.Echelon}.
@@ -83,11 +84,18 @@ public class EchelonResource {
     /**
      * {@code GET  /echelons} : get all the echelons.
      *
-
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of echelons in body.
      */
     @GetMapping("/echelons")
-    public List<Echelon> getAllEchelons() {
+    public List<Echelon> getAllEchelons(@RequestParam(required = false) String filter) {
+        if ("carriere-is-null".equals(filter)) {
+            log.debug("REST request to get all Echelons where carriere is null");
+            return StreamSupport
+                .stream(echelonRepository.findAll().spliterator(), false)
+                .filter(echelon -> echelon.getCarriere() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all Echelons");
         return echelonRepository.findAll();
     }

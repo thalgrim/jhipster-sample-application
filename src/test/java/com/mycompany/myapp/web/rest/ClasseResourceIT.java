@@ -105,7 +105,7 @@ public class ClasseResourceIT {
 
         // Create the Classe
         restClasseMockMvc.perform(post("/api/classes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(classe)))
             .andExpect(status().isCreated());
 
@@ -126,7 +126,7 @@ public class ClasseResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restClasseMockMvc.perform(post("/api/classes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(classe)))
             .andExpect(status().isBadRequest());
 
@@ -145,7 +145,7 @@ public class ClasseResourceIT {
         // Get all the classeList
         restClasseMockMvc.perform(get("/api/classes?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(classe.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)));
     }
@@ -159,7 +159,7 @@ public class ClasseResourceIT {
         // Get the classe
         restClasseMockMvc.perform(get("/api/classes/{id}", classe.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(classe.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM));
     }
@@ -188,7 +188,7 @@ public class ClasseResourceIT {
             .nom(UPDATED_NOM);
 
         restClasseMockMvc.perform(put("/api/classes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedClasse)))
             .andExpect(status().isOk());
 
@@ -208,7 +208,7 @@ public class ClasseResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restClasseMockMvc.perform(put("/api/classes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(classe)))
             .andExpect(status().isBadRequest());
 
@@ -227,7 +227,7 @@ public class ClasseResourceIT {
 
         // Delete the classe
         restClasseMockMvc.perform(delete("/api/classes/{id}", classe.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

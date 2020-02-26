@@ -2,93 +2,101 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-echelon-heading" jhiTranslate="jhipsterSampleApplicationApp.echelon.home.createOrEditLabel">Create or edit a Echelon</h2>
+
             <div>
                 <jhi-alert-error></jhi-alert-error>
+
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.nom" for="field_nom">Nom</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
                            formControlName="nom"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.niveau" for="field_niveau">Niveau</label>
                     <input type="number" class="form-control" name="niveau" id="field_niveau"
                            formControlName="niveau"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.cc" for="field_cc">Cc</label>
                     <input type="checkbox" class="form-control" name="cc" id="field_cc"
                            formControlName="cc"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.ct" for="field_ct">Ct</label>
                     <input type="checkbox" class="form-control" name="ct" id="field_ct"
                            formControlName="ct"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.fo" for="field_fo">Fo</label>
                     <input type="checkbox" class="form-control" name="fo" id="field_fo"
                            formControlName="fo"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.en" for="field_en">En</label>
                     <input type="checkbox" class="form-control" name="en" id="field_en"
                            formControlName="en"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.ini" for="field_ini">Ini</label>
                     <input type="checkbox" class="form-control" name="ini" id="field_ini"
                            formControlName="ini"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.ag" for="field_ag">Ag</label>
                     <input type="checkbox" class="form-control" name="ag" id="field_ag"
                            formControlName="ag"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.dex" for="field_dex">Dex</label>
                     <input type="checkbox" class="form-control" name="dex" id="field_dex"
                            formControlName="dex"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.inte" for="field_inte">Inte</label>
                     <input type="checkbox" class="form-control" name="inte" id="field_inte"
                            formControlName="inte"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.fm" for="field_fm">Fm</label>
                     <input type="checkbox" class="form-control" name="fm" id="field_fm"
                            formControlName="fm"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.soc" for="field_soc">Soc</label>
                     <input type="checkbox" class="form-control" name="soc" id="field_soc"
                            formControlName="soc"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.statut" for="field_statut">Statut</label>
                     <input type="text" class="form-control" name="statut" id="field_statut"
                            formControlName="statut"/>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.echelon.carriere" for="field_carriere">Carriere</label>
-                    <select class="form-control" id="field_carriere" name="carriere" formControlName="carriere">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="carriereOption.id === editForm.get('carriere')!.value?.id ? editForm.get('carriere')!.value : carriereOption" *ngFor="let carriereOption of carrieres; trackBy: trackById">{{carriereOption.id}}</option>
-                    </select>
-                </div>
             </div>
+
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
+
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

@@ -19,9 +19,7 @@ export class PersonnageComponent implements OnInit, OnDestroy {
   constructor(protected personnageService: PersonnageService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.personnageService.query().subscribe((res: HttpResponse<IPersonnage[]>) => {
-      this.personnages = res.body ? res.body : [];
-    });
+    this.personnageService.query().subscribe((res: HttpResponse<IPersonnage[]>) => (this.personnages = res.body || []));
   }
 
   ngOnInit(): void {
