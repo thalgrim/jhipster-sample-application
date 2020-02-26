@@ -120,7 +120,7 @@ public class TalentResourceIT {
 
         // Create the Talent
         restTalentMockMvc.perform(post("/api/talents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(talent)))
             .andExpect(status().isCreated());
 
@@ -144,7 +144,7 @@ public class TalentResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTalentMockMvc.perform(post("/api/talents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(talent)))
             .andExpect(status().isBadRequest());
 
@@ -163,7 +163,7 @@ public class TalentResourceIT {
         // Get all the talentList
         restTalentMockMvc.perform(get("/api/talents?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(talent.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].maxi").value(hasItem(DEFAULT_MAXI)))
@@ -180,7 +180,7 @@ public class TalentResourceIT {
         // Get the talent
         restTalentMockMvc.perform(get("/api/talents/{id}", talent.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(talent.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.maxi").value(DEFAULT_MAXI))
@@ -215,7 +215,7 @@ public class TalentResourceIT {
             .description(UPDATED_DESCRIPTION);
 
         restTalentMockMvc.perform(put("/api/talents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedTalent)))
             .andExpect(status().isOk());
 
@@ -238,7 +238,7 @@ public class TalentResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restTalentMockMvc.perform(put("/api/talents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(talent)))
             .andExpect(status().isBadRequest());
 
@@ -257,7 +257,7 @@ public class TalentResourceIT {
 
         // Delete the talent
         restTalentMockMvc.perform(delete("/api/talents/{id}", talent.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

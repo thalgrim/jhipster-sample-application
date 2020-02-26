@@ -1,30 +1,33 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="competence">
-            <h2><span jhiTranslate="jhipsterSampleApplicationApp.competence.detail.title">Competence</span> {{competence.id}}</h2>
+            <h2><span jhiTranslate="jhipsterSampleApplicationApp.competence.detail.title">Competence</span> {{ competence.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.competence.nom">Nom</span></dt>
                 <dd>
-                    <span>{{competence.nom}}</span>
+                    <span>{{ competence.nom }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.competence.caracteristique">Caracteristique</span></dt>
                 <dd>
-                    <span>{{competence.caracteristique}}</span>
+                    <span>{{ competence.caracteristique }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.competence.deBase">De Base</span></dt>
                 <dd>
-                    <span>{{competence.deBase}}</span>
+                    <span>{{ competence.deBase }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.competence.groupee">Groupee</span></dt>
                 <dd>
-                    <span>{{competence.groupee}}</span>
+                    <span>{{ competence.groupee }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.competence.echelon">Echelon</span></dt>
                 <dd>
                     <div *ngIf="competence.echelon">
-                        <a [routerLink]="['/echelon', competence.echelon?.id, 'view']">{{competence.echelon?.id}}</a>
+                        <a [routerLink]="['/echelon', competence.echelon?.id, 'view']">{{ competence.echelon?.id }}</a>
                     </div>
                 </dd>
             </dl>
@@ -32,13 +35,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/competence', competence.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>

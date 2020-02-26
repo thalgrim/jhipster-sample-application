@@ -19,9 +19,7 @@ export class PossessionComponent implements OnInit, OnDestroy {
   constructor(protected possessionService: PossessionService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.possessionService.query().subscribe((res: HttpResponse<IPossession[]>) => {
-      this.possessions = res.body ? res.body : [];
-    });
+    this.possessionService.query().subscribe((res: HttpResponse<IPossession[]>) => (this.possessions = res.body || []));
   }
 
   ngOnInit(): void {

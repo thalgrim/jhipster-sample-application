@@ -13,9 +13,7 @@ export class TalentDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ talent }) => {
-      this.talent = talent;
-    });
+    this.activatedRoute.data.subscribe(({ talent }) => (this.talent = talent));
   }
 
   previousState(): void {

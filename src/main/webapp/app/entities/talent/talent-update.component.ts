@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { ITalent, Talent } from 'app/shared/model/talent.model';
 import { TalentService } from './talent.service';
@@ -17,7 +16,6 @@ import { EchelonService } from 'app/entities/echelon/echelon.service';
 })
 export class TalentUpdateComponent implements OnInit {
   isSaving = false;
-
   echelons: IEchelon[] = [];
 
   editForm = this.fb.group({
@@ -40,14 +38,7 @@ export class TalentUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ talent }) => {
       this.updateForm(talent);
 
-      this.echelonService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IEchelon[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IEchelon[]) => (this.echelons = resBody));
+      this.echelonService.query().subscribe((res: HttpResponse<IEchelon[]>) => (this.echelons = res.body || []));
     });
   }
 

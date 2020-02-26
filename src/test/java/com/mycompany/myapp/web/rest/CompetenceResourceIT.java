@@ -120,7 +120,7 @@ public class CompetenceResourceIT {
 
         // Create the Competence
         restCompetenceMockMvc.perform(post("/api/competences")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(competence)))
             .andExpect(status().isCreated());
 
@@ -144,7 +144,7 @@ public class CompetenceResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCompetenceMockMvc.perform(post("/api/competences")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(competence)))
             .andExpect(status().isBadRequest());
 
@@ -163,7 +163,7 @@ public class CompetenceResourceIT {
         // Get all the competenceList
         restCompetenceMockMvc.perform(get("/api/competences?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(competence.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].caracteristique").value(hasItem(DEFAULT_CARACTERISTIQUE)))
@@ -180,7 +180,7 @@ public class CompetenceResourceIT {
         // Get the competence
         restCompetenceMockMvc.perform(get("/api/competences/{id}", competence.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(competence.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.caracteristique").value(DEFAULT_CARACTERISTIQUE))
@@ -215,7 +215,7 @@ public class CompetenceResourceIT {
             .groupee(UPDATED_GROUPEE);
 
         restCompetenceMockMvc.perform(put("/api/competences")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedCompetence)))
             .andExpect(status().isOk());
 
@@ -238,7 +238,7 @@ public class CompetenceResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCompetenceMockMvc.perform(put("/api/competences")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(competence)))
             .andExpect(status().isBadRequest());
 
@@ -257,7 +257,7 @@ public class CompetenceResourceIT {
 
         // Delete the competence
         restCompetenceMockMvc.perform(delete("/api/competences/{id}", competence.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

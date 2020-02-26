@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { ICompetence, Competence } from 'app/shared/model/competence.model';
 import { CompetenceService } from './competence.service';
@@ -17,7 +16,6 @@ import { EchelonService } from 'app/entities/echelon/echelon.service';
 })
 export class CompetenceUpdateComponent implements OnInit {
   isSaving = false;
-
   echelons: IEchelon[] = [];
 
   editForm = this.fb.group({
@@ -40,14 +38,7 @@ export class CompetenceUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ competence }) => {
       this.updateForm(competence);
 
-      this.echelonService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IEchelon[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IEchelon[]) => (this.echelons = resBody));
+      this.echelonService.query().subscribe((res: HttpResponse<IEchelon[]>) => (this.echelons = res.body || []));
     });
   }
 

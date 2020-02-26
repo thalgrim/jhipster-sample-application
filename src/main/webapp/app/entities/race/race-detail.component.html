@@ -1,96 +1,93 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="race">
-            <h2><span jhiTranslate="jhipsterSampleApplicationApp.race.detail.title">Race</span> {{race.id}}</h2>
+            <h2><span jhiTranslate="jhipsterSampleApplicationApp.race.detail.title">Race</span> {{ race.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.cc">Cc</span></dt>
                 <dd>
-                    <span>{{race.cc}}</span>
+                    <span>{{ race.cc }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.ct">Ct</span></dt>
                 <dd>
-                    <span>{{race.ct}}</span>
+                    <span>{{ race.ct }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.fo">Fo</span></dt>
                 <dd>
-                    <span>{{race.fo}}</span>
+                    <span>{{ race.fo }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.en">En</span></dt>
                 <dd>
-                    <span>{{race.en}}</span>
+                    <span>{{ race.en }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.ini">Ini</span></dt>
                 <dd>
-                    <span>{{race.ini}}</span>
+                    <span>{{ race.ini }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.ag">Ag</span></dt>
                 <dd>
-                    <span>{{race.ag}}</span>
+                    <span>{{ race.ag }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.dex">Dex</span></dt>
                 <dd>
-                    <span>{{race.dex}}</span>
+                    <span>{{ race.dex }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.inte">Inte</span></dt>
                 <dd>
-                    <span>{{race.inte}}</span>
+                    <span>{{ race.inte }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.fm">Fm</span></dt>
                 <dd>
-                    <span>{{race.fm}}</span>
+                    <span>{{ race.fm }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.soc">Soc</span></dt>
                 <dd>
-                    <span>{{race.soc}}</span>
+                    <span>{{ race.soc }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.destin">Destin</span></dt>
                 <dd>
-                    <span>{{race.destin}}</span>
+                    <span>{{ race.destin }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.resilience">Resilience</span></dt>
                 <dd>
-                    <span>{{race.resilience}}</span>
+                    <span>{{ race.resilience }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.experience">Experience</span></dt>
                 <dd>
-                    <span>{{race.experience}}</span>
+                    <span>{{ race.experience }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.mouvement">Mouvement</span></dt>
                 <dd>
-                    <span>{{race.mouvement}}</span>
+                    <span>{{ race.mouvement }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.pointsSuplementaires">Points Suplementaires</span></dt>
                 <dd>
-                    <span>{{race.pointsSuplementaires}}</span>
+                    <span>{{ race.pointsSuplementaires }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.blessures">Blessures</span></dt>
                 <dd>
-                    <span>{{race.blessures}}</span>
+                    <span>{{ race.blessures }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.nom">Nom</span></dt>
                 <dd>
-                    <span>{{race.nom}}</span>
-                </dd>
-                <dt><span jhiTranslate="jhipsterSampleApplicationApp.race.personnage">Personnage</span></dt>
-                <dd>
-                    <div *ngIf="race.personnage">
-                        <a [routerLink]="['/personnage', race.personnage?.id, 'view']">{{race.personnage?.id}}</a>
-                    </div>
+                    <span>{{ race.nom }}</span>
                 </dd>
             </dl>
 
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/race', race.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>

@@ -4,12 +4,9 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { IEchelon, Echelon } from 'app/shared/model/echelon.model';
 import { EchelonService } from './echelon.service';
-import { ICarriere } from 'app/shared/model/carriere.model';
-import { CarriereService } from 'app/entities/carriere/carriere.service';
 
 @Component({
   selector: 'jhi-echelon-update',
@@ -17,8 +14,6 @@ import { CarriereService } from 'app/entities/carriere/carriere.service';
 })
 export class EchelonUpdateComponent implements OnInit {
   isSaving = false;
-
-  carrieres: ICarriere[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -34,29 +29,14 @@ export class EchelonUpdateComponent implements OnInit {
     inte: [],
     fm: [],
     soc: [],
-    statut: [],
-    carriere: []
+    statut: []
   });
 
-  constructor(
-    protected echelonService: EchelonService,
-    protected carriereService: CarriereService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected echelonService: EchelonService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ echelon }) => {
       this.updateForm(echelon);
-
-      this.carriereService
-        .query()
-        .pipe(
-          map((res: HttpResponse<ICarriere[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: ICarriere[]) => (this.carrieres = resBody));
     });
   }
 
@@ -75,8 +55,7 @@ export class EchelonUpdateComponent implements OnInit {
       inte: echelon.inte,
       fm: echelon.fm,
       soc: echelon.soc,
-      statut: echelon.statut,
-      carriere: echelon.carriere
+      statut: echelon.statut
     });
   }
 
@@ -110,8 +89,7 @@ export class EchelonUpdateComponent implements OnInit {
       inte: this.editForm.get(['inte'])!.value,
       fm: this.editForm.get(['fm'])!.value,
       soc: this.editForm.get(['soc'])!.value,
-      statut: this.editForm.get(['statut'])!.value,
-      carriere: this.editForm.get(['carriere'])!.value
+      statut: this.editForm.get(['statut'])!.value
     };
   }
 
@@ -129,9 +107,5 @@ export class EchelonUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: ICarriere): any {
-    return item.id;
   }
 }

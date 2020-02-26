@@ -105,7 +105,7 @@ public class CarriereResourceIT {
 
         // Create the Carriere
         restCarriereMockMvc.perform(post("/api/carrieres")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(carriere)))
             .andExpect(status().isCreated());
 
@@ -126,7 +126,7 @@ public class CarriereResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCarriereMockMvc.perform(post("/api/carrieres")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(carriere)))
             .andExpect(status().isBadRequest());
 
@@ -145,7 +145,7 @@ public class CarriereResourceIT {
         // Get all the carriereList
         restCarriereMockMvc.perform(get("/api/carrieres?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(carriere.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)));
     }
@@ -159,7 +159,7 @@ public class CarriereResourceIT {
         // Get the carriere
         restCarriereMockMvc.perform(get("/api/carrieres/{id}", carriere.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(carriere.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM));
     }
@@ -188,7 +188,7 @@ public class CarriereResourceIT {
             .nom(UPDATED_NOM);
 
         restCarriereMockMvc.perform(put("/api/carrieres")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedCarriere)))
             .andExpect(status().isOk());
 
@@ -208,7 +208,7 @@ public class CarriereResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCarriereMockMvc.perform(put("/api/carrieres")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(carriere)))
             .andExpect(status().isBadRequest());
 
@@ -227,7 +227,7 @@ public class CarriereResourceIT {
 
         // Delete the carriere
         restCarriereMockMvc.perform(delete("/api/carrieres/{id}", carriere.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

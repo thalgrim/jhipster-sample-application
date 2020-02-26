@@ -105,7 +105,7 @@ public class UtilisateurResourceIT {
 
         // Create the Utilisateur
         restUtilisateurMockMvc.perform(post("/api/utilisateurs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(utilisateur)))
             .andExpect(status().isCreated());
 
@@ -126,7 +126,7 @@ public class UtilisateurResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restUtilisateurMockMvc.perform(post("/api/utilisateurs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(utilisateur)))
             .andExpect(status().isBadRequest());
 
@@ -145,7 +145,7 @@ public class UtilisateurResourceIT {
         // Get all the utilisateurList
         restUtilisateurMockMvc.perform(get("/api/utilisateurs?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(utilisateur.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)));
     }
@@ -159,7 +159,7 @@ public class UtilisateurResourceIT {
         // Get the utilisateur
         restUtilisateurMockMvc.perform(get("/api/utilisateurs/{id}", utilisateur.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(utilisateur.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM));
     }
@@ -188,7 +188,7 @@ public class UtilisateurResourceIT {
             .nom(UPDATED_NOM);
 
         restUtilisateurMockMvc.perform(put("/api/utilisateurs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedUtilisateur)))
             .andExpect(status().isOk());
 
@@ -208,7 +208,7 @@ public class UtilisateurResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUtilisateurMockMvc.perform(put("/api/utilisateurs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(utilisateur)))
             .andExpect(status().isBadRequest());
 
@@ -227,7 +227,7 @@ public class UtilisateurResourceIT {
 
         // Delete the utilisateur
         restUtilisateurMockMvc.perform(delete("/api/utilisateurs/{id}", utilisateur.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

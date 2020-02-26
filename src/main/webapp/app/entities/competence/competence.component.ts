@@ -19,9 +19,7 @@ export class CompetenceComponent implements OnInit, OnDestroy {
   constructor(protected competenceService: CompetenceService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.competenceService.query().subscribe((res: HttpResponse<ICompetence[]>) => {
-      this.competences = res.body ? res.body : [];
-    });
+    this.competenceService.query().subscribe((res: HttpResponse<ICompetence[]>) => (this.competences = res.body || []));
   }
 
   ngOnInit(): void {

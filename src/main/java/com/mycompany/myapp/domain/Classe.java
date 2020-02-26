@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,8 +31,8 @@ public class Classe implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Possession> possessions = new HashSet<>();
 
-    @ManyToOne
-    @JsonIgnoreProperties("classes")
+    @OneToOne(mappedBy = "classe")
+    @JsonIgnore
     private Carriere carriere;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

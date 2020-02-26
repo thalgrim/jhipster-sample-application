@@ -19,9 +19,7 @@ export class RaceComponent implements OnInit, OnDestroy {
   constructor(protected raceService: RaceService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.raceService.query().subscribe((res: HttpResponse<IRace[]>) => {
-      this.races = res.body ? res.body : [];
-    });
+    this.raceService.query().subscribe((res: HttpResponse<IRace[]>) => (this.races = res.body || []));
   }
 
   ngOnInit(): void {

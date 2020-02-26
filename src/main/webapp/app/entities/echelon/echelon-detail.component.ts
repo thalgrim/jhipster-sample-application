@@ -13,9 +13,7 @@ export class EchelonDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ echelon }) => {
-      this.echelon = echelon;
-    });
+    this.activatedRoute.data.subscribe(({ echelon }) => (this.echelon = echelon));
   }
 
   previousState(): void {

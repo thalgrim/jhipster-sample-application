@@ -5,8 +5,8 @@ import { IUtilisateur } from 'app/shared/model/utilisateur.model';
 export interface IPersonnage {
   id?: number;
   nom?: string;
-  races?: IRace[];
-  carrieres?: ICarriere[];
+  race?: IRace;
+  carriere?: ICarriere;
   utilisateur?: IUtilisateur;
 }
 
@@ -14,8 +14,8 @@ export class Personnage implements IPersonnage {
   constructor(
     public id?: number,
     public nom?: string,
-    public races?: IRace[],
-    public carrieres?: ICarriere[],
+    public race?: IRace,
+    public carriere?: ICarriere,
     public utilisateur?: IUtilisateur
   ) {}
 }

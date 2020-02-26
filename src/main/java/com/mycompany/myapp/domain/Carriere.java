@@ -1,13 +1,12 @@
 package com.mycompany.myapp.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Carriere.
@@ -26,16 +25,16 @@ public class Carriere implements Serializable {
     @Column(name = "nom")
     private String nom;
 
-    @OneToMany(mappedBy = "carriere")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Echelon> echelons = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Echelon echelon;
 
-    @OneToMany(mappedBy = "carriere")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Classe> classes = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Classe classe;
 
-    @ManyToOne
-    @JsonIgnoreProperties("carrieres")
+    @OneToOne(mappedBy = "carriere")
+    @JsonIgnore
     private Personnage personnage;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -60,54 +59,30 @@ public class Carriere implements Serializable {
         this.nom = nom;
     }
 
-    public Set<Echelon> getEchelons() {
-        return echelons;
+    public Echelon getEchelon() {
+        return echelon;
     }
 
-    public Carriere echelons(Set<Echelon> echelons) {
-        this.echelons = echelons;
+    public Carriere echelon(Echelon echelon) {
+        this.echelon = echelon;
         return this;
     }
 
-    public Carriere addEchelon(Echelon echelon) {
-        this.echelons.add(echelon);
-        echelon.setCarriere(this);
+    public void setEchelon(Echelon echelon) {
+        this.echelon = echelon;
+    }
+
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public Carriere classe(Classe classe) {
+        this.classe = classe;
         return this;
     }
 
-    public Carriere removeEchelon(Echelon echelon) {
-        this.echelons.remove(echelon);
-        echelon.setCarriere(null);
-        return this;
-    }
-
-    public void setEchelons(Set<Echelon> echelons) {
-        this.echelons = echelons;
-    }
-
-    public Set<Classe> getClasses() {
-        return classes;
-    }
-
-    public Carriere classes(Set<Classe> classes) {
-        this.classes = classes;
-        return this;
-    }
-
-    public Carriere addClasse(Classe classe) {
-        this.classes.add(classe);
-        classe.setCarriere(this);
-        return this;
-    }
-
-    public Carriere removeClasse(Classe classe) {
-        this.classes.remove(classe);
-        classe.setCarriere(null);
-        return this;
-    }
-
-    public void setClasses(Set<Classe> classes) {
-        this.classes = classes;
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
     public Personnage getPersonnage() {

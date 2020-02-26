@@ -2,13 +2,15 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-carriere-heading" jhiTranslate="jhipsterSampleApplicationApp.carriere.home.createOrEditLabel">Create or edit a Carriere</h2>
+
             <div>
                 <jhi-alert-error></jhi-alert-error>
+
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.carriere.nom" for="field_nom">Nom</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
@@ -16,19 +18,29 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.carriere.personnage" for="field_personnage">Personnage</label>
-                    <select class="form-control" id="field_personnage" name="personnage" formControlName="personnage">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.carriere.echelon" for="field_echelon">Echelon</label>
+                    <select class="form-control" id="field_echelon" name="echelon" formControlName="echelon">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="personnageOption.id === editForm.get('personnage')!.value?.id ? editForm.get('personnage')!.value : personnageOption" *ngFor="let personnageOption of personnages; trackBy: trackById">{{personnageOption.id}}</option>
+                        <option [ngValue]="echelonOption.id === editForm.get('echelon')!.value?.id ? editForm.get('echelon')!.value : echelonOption" *ngFor="let echelonOption of echelons; trackBy: trackById">{{ echelonOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.carriere.classe" for="field_classe">Classe</label>
+                    <select class="form-control" id="field_classe" name="classe" formControlName="classe">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="classeOption.id === editForm.get('classe')!.value?.id ? editForm.get('classe')!.value : classeOption" *ngFor="let classeOption of classes; trackBy: trackById">{{ classeOption.id }}</option>
                     </select>
                 </div>
             </div>
+
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
+
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

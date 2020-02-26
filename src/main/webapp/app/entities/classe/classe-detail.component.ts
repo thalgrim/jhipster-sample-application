@@ -13,9 +13,7 @@ export class ClasseDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ classe }) => {
-      this.classe = classe;
-    });
+    this.activatedRoute.data.subscribe(({ classe }) => (this.classe = classe));
   }
 
   previousState(): void {

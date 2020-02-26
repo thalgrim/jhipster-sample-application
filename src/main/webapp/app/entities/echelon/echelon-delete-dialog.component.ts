@@ -13,7 +13,7 @@ export class EchelonDeleteDialogComponent {
 
   constructor(protected echelonService: EchelonService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

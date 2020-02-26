@@ -8,6 +8,18 @@
     -->
     <changeSet id="20200127145503-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="race_id"
+                                 baseTableName="personnage"
+                                 constraintName="fk_personnage_race_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="race"/>
+
+        <addForeignKeyConstraint baseColumnNames="carriere_id"
+                                 baseTableName="personnage"
+                                 constraintName="fk_personnage_carriere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="carriere"/>
+
         <addForeignKeyConstraint baseColumnNames="utilisateur_id"
                                  baseTableName="personnage"
                                  constraintName="fk_personnage_utilisateur_id"

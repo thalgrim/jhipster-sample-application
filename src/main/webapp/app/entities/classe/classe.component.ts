@@ -19,9 +19,7 @@ export class ClasseComponent implements OnInit, OnDestroy {
   constructor(protected classeService: ClasseService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.classeService.query().subscribe((res: HttpResponse<IClasse[]>) => {
-      this.classes = res.body ? res.body : [];
-    });
+    this.classeService.query().subscribe((res: HttpResponse<IClasse[]>) => (this.classes = res.body || []));
   }
 
   ngOnInit(): void {

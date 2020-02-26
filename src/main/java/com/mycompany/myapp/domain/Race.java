@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -72,8 +73,8 @@ public class Race implements Serializable {
     @Column(name = "nom")
     private String nom;
 
-    @ManyToOne
-    @JsonIgnoreProperties("races")
+    @OneToOne(mappedBy = "race")
+    @JsonIgnore
     private Personnage personnage;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

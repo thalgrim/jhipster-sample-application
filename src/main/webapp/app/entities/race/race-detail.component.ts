@@ -13,9 +13,7 @@ export class RaceDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ race }) => {
-      this.race = race;
-    });
+    this.activatedRoute.data.subscribe(({ race }) => (this.race = race));
   }
 
   previousState(): void {

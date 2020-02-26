@@ -13,9 +13,7 @@ export class PossessionDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ possession }) => {
-      this.possession = possession;
-    });
+    this.activatedRoute.data.subscribe(({ possession }) => (this.possession = possession));
   }
 
   previousState(): void {

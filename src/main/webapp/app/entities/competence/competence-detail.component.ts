@@ -13,9 +13,7 @@ export class CompetenceDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ competence }) => {
-      this.competence = competence;
-    });
+    this.activatedRoute.data.subscribe(({ competence }) => (this.competence = competence));
   }
 
   previousState(): void {

@@ -16,8 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [JhipsterSampleApplicationTestModule],
-        declarations: [CarriereComponent],
-        providers: []
+        declarations: [CarriereComponent]
       })
         .overrideTemplate(CarriereComponent, '')
         .compileComponents();

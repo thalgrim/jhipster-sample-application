@@ -165,7 +165,7 @@ public class EchelonResourceIT {
 
         // Create the Echelon
         restEchelonMockMvc.perform(post("/api/echelons")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(echelon)))
             .andExpect(status().isCreated());
 
@@ -198,7 +198,7 @@ public class EchelonResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restEchelonMockMvc.perform(post("/api/echelons")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(echelon)))
             .andExpect(status().isBadRequest());
 
@@ -217,7 +217,7 @@ public class EchelonResourceIT {
         // Get all the echelonList
         restEchelonMockMvc.perform(get("/api/echelons?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(echelon.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].niveau").value(hasItem(DEFAULT_NIVEAU)))
@@ -243,7 +243,7 @@ public class EchelonResourceIT {
         // Get the echelon
         restEchelonMockMvc.perform(get("/api/echelons/{id}", echelon.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(echelon.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.niveau").value(DEFAULT_NIVEAU))
@@ -296,7 +296,7 @@ public class EchelonResourceIT {
             .statut(UPDATED_STATUT);
 
         restEchelonMockMvc.perform(put("/api/echelons")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedEchelon)))
             .andExpect(status().isOk());
 
@@ -328,7 +328,7 @@ public class EchelonResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restEchelonMockMvc.perform(put("/api/echelons")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(echelon)))
             .andExpect(status().isBadRequest());
 
@@ -347,7 +347,7 @@ public class EchelonResourceIT {
 
         // Delete the echelon
         restEchelonMockMvc.perform(delete("/api/echelons/{id}", echelon.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(TestUtil.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

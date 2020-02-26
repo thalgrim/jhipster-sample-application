@@ -8,16 +8,20 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "one-to-one",
             "otherEntityName": "race",
             "otherEntityRelationshipName": "personnage",
-            "relationshipName": "race"
+            "relationshipName": "race",
+            "otherEntityField": "id",
+            "ownerSide": true
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "one-to-one",
             "otherEntityName": "carriere",
             "otherEntityRelationshipName": "personnage",
-            "relationshipName": "carriere"
+            "relationshipName": "carriere",
+            "otherEntityField": "id",
+            "ownerSide": true
         },
         {
             "relationshipType": "many-to-one",

@@ -19,9 +19,7 @@ export class TalentComponent implements OnInit, OnDestroy {
   constructor(protected talentService: TalentService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.talentService.query().subscribe((res: HttpResponse<ITalent[]>) => {
-      this.talents = res.body ? res.body : [];
-    });
+    this.talentService.query().subscribe((res: HttpResponse<ITalent[]>) => (this.talents = res.body || []));
   }
 
   ngOnInit(): void {

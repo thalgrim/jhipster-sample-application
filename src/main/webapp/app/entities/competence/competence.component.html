@@ -1,66 +1,72 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="jhipsterSampleApplicationApp.competence.home.title">Competences</span>
+
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-competence" [routerLink]="['/competence/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
+            <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="jhipsterSampleApplicationApp.competence.home.createLabel">
             Create a new Competence
             </span>
         </button>
     </h2>
+
     <jhi-alert-error></jhi-alert-error>
+
     <jhi-alert></jhi-alert>
-    <br/>
-    <div class="alert alert-warning" *ngIf="competences?.length === 0">
+
+    <div class="alert alert-warning" id="no-result" *ngIf="competences?.length === 0">
         <span jhiTranslate="jhipsterSampleApplicationApp.competence.home.notFound">No competences found</span>
     </div>
-    <div class="table-responsive" *ngIf="competences?.length > 0">
+
+    <div class="table-responsive" id="entities" *ngIf="competences?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-            <tr>
-            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.nom">Nom</span></th>
-            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.caracteristique">Caracteristique</span></th>
-            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.deBase">De Base</span></th>
-            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.groupee">Groupee</span></th>
-            <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.echelon">Echelon</span></th>
-            <th scope="col"></th>
-            </tr>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.nom">Nom</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.caracteristique">Caracteristique</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.deBase">De Base</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.groupee">Groupee</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipsterSampleApplicationApp.competence.echelon">Echelon</span></th>
+                    <th scope="col"></th>
+                </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let competence of competences ;trackBy: trackId">
-                <td><a [routerLink]="['/competence', competence.id, 'view' ]">{{competence.id}}</a></td>
-                <td>{{competence.nom}}</td>
-                <td>{{competence.caracteristique}}</td>
-                <td>{{competence.deBase}}</td>
-                <td>{{competence.groupee}}</td>
-                <td>
-                    <div *ngIf="competence.echelon">
-                        <a [routerLink]="['/echelon', competence.echelon?.id, 'view' ]" >{{competence.echelon?.id}}</a>
-                    </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/competence', competence.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/competence', competence.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit" (click)="delete(competence)"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
+                <tr *ngFor="let competence of competences ;trackBy: trackId">
+                    <td><a [routerLink]="['/competence', competence.id, 'view']">{{ competence.id }}</a></td>
+                    <td>{{ competence.nom }}</td>
+                    <td>{{ competence.caracteristique }}</td>
+                    <td>{{ competence.deBase }}</td>
+                    <td>{{ competence.groupee }}</td>
+                    <td>
+                        <div *ngIf="competence.echelon">
+                            <a [routerLink]="['/echelon', competence.echelon?.id, 'view']" >{{ competence.echelon?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/competence', competence.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/competence', competence.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(competence)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
