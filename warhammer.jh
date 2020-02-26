@@ -71,15 +71,15 @@ relationship OneToMany {
 	Utilisateur to Personnage
 }
 
-relationship OneToMany {
+relationship OneToOne {
 	Personnage to Race
 }
 
-relationship OneToMany {
+relationship OneToOne {
 	Personnage to Carriere
 }
 
-relationship OneToMany {
+relationship OneToOne {
 	Carriere to Echelon
 }
 
@@ -95,7 +95,7 @@ relationship OneToMany {
 	Echelon to Possession
 }
 
-relationship OneToMany {
+relationship OneToOne {
 	Carriere to Classe
 }
 
